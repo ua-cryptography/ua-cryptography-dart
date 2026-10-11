@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  # Formatting and analysis of the package and the example; the example needs Flutter to resolve.
+  analyze:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - run: dart pub get
+      - run: flutter pub get
+        working-directory: example
+
+      - run: dart format --set-exit-if-changed .
+      - run: dart analyze --fatal-infos
+
+      # pub.dev's own checks; a warning fails.
+      - run: dart pub publish --dry-run
+
+  # The build hook downloads the pinned library of each runner's target and checks its SHA-256.
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+
+      - run: dart pub get
+      - run: dart test

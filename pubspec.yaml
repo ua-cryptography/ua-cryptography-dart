@@ -1,8 +1,8 @@
 name: ua_cryptography
 description: >-
-  Ukrainian national cryptography for Dart and Flutter: DSTU 4145, DSTU 7564 (Kupyna), DSTU 7624 (Kalyna),
-  GOST 28147-89, GOST 34.311-95, key stores and CAdES / XAdES / ASiC signatures, over a native library.
-version: 0.1.0-dev
+  Ukrainian e-signatures for Dart and Flutter: sign and verify CAdES, XAdES and ASiC with DSTU 4145 keys from JKS key
+  stores, and DSTU 7564 (Kupyna) hashing, over a native library.
+version: 0.1.0
 repository: https://github.com/ua-cryptography/ua-cryptography-dart
 issue_tracker: https://github.com/ua-cryptography/ua-cryptography-dart/issues
 topics:

@@ -1,0 +1,42 @@
+name: Publish to pub.dev
+
+# On a version tag (v1.2.3, v1.2.3-beta.1) equal to pubspec.yaml's version: the tests, then the package on pub.dev
+# once the author approves the `pub.dev` environment (Settings → Environments → pub.dev → Required reviewers).
+# pub.dev trusts this workflow by OIDC (the package's Admin → Automated publishing), so no token is stored.
+
+on:
+  push:
+    tags:
+      - 'v[0-9]+.[0-9]+.[0-9]+*'
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: dart-lang/setup-dart@v1
+
+      - name: The tag names pubspec.yaml's version
+        run: |
+          version="$(awk '/^version: / { print $2; exit }' pubspec.yaml)"
+          if [[ "${GITHUB_REF_NAME#v}" != "$version" ]]; then
+            echo "::error::Tag $GITHUB_REF_NAME, but pubspec.yaml's version is $version"
+            exit 1
+          fi
+
+      - run: dart pub get
+
+      # The build hook downloads the pinned native library of linux-x64 and checks its SHA-256.
+      - run: dart test
+
+  publish:
+    needs: check
+    permissions:
+      id-token: write # the OIDC token pub.dev exchanges for a publish credential
+    uses: dart-lang/setup-dart/.github/workflows/publish.yml@v1
+    with:
+      environment: 'pub.dev'
