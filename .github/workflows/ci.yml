@@ -42,5 +42,6 @@ jobs:
 
       - uses: dart-lang/setup-dart@v1
 
-      - run: dart pub get
+      # Plain Dart: the example needs Flutter, so pub resolves the package alone.
+      - run: dart pub get --no-example
       - run: dart test

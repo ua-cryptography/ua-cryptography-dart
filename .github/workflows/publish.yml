@@ -28,7 +28,8 @@ jobs:
             exit 1
           fi
 
-      - run: dart pub get
+      # Plain Dart: the example needs Flutter, so pub resolves the package alone.
+      - run: dart pub get --no-example
 
       # The build hook downloads the pinned native library of linux-x64 and checks its SHA-256.
       - run: dart test

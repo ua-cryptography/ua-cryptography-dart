@@ -1,5 +1,16 @@
 include: package:flutter_lints/flutter.yaml
 
+# Generated build output and platform projects; Flutter 3.47 and later add these excludes on `flutter pub get`
+# when they are missing, so listing them keeps the file unchanged in CI.
+analyzer:
+  exclude:
+    - build/**
+    - android/**
+    - ios/**
+    - windows/**
+    - macos/**
+    - linux/**
+
 formatter:
   page_width: 120
 
