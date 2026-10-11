@@ -20,4 +20,4 @@ flutter run                                  # on a connected device, a simulato
 flutter test integration_test -d <device>    # the library flows on that device, without the UI
 ```
 
-Minimum versions: Android API 21, iOS 15, macOS 12 (what Xcode 27 builds for), glibc 2.35, Windows 10.
+Minimum versions: Android API 24, iOS 15, macOS 12 (what Xcode 27 builds for), glibc 2.35, Windows 10.
