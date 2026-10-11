@@ -1,0 +1,53 @@
+# Dart / Flutter
+.dart_tool/
+.packages
+.flutter-plugins
+.flutter-plugins-dependencies
+.fvm/
+build/
+pubspec_overrides.yaml
+/doc/api/
+coverage/
+*.log
+
+# Local assistant instructions, settings and task notes, in any directory
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+Task.md
+
+# Editors and Xcode user state
+.idea/
+.vscode/
+*.iml
+*.swp
+*~
+xcuserdata/
+*.xcuserstate
+
+# The Apple Developer team that signs device builds of the example is local (example/ios/Flutter/Signing.xcconfig).
+Signing.xcconfig
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Native libraries are downloaded or copied by the build hook, never committed.
+*.so
+*.dylib
+*.dll
+*.a
+*.lib
+*.xcframework/
+
+# Private key material and real signed documents must never be committed:
+# the tests use synthetic keys and public CA certificates only.
+*.jks
+*.pfx
+*.p12
+*.pck
+*.PCK
+*.SK
+*.ZS2
+Key-6.dat
+/private/
